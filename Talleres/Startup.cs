@@ -44,7 +44,7 @@ namespace Talleres
             });
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cobros-Dynamic Api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Talleres Api", Version = "v1" });
             });
            // services.AddScoped<IEngineBase<Company>, CompanyEngine>();
 
