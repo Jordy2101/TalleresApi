@@ -13,4 +13,9 @@
     <ProjectReference Include="..\TALLER.ENTITY\TALLER.ENTITY.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contract\" />
+    <Folder Include="Engines\" />
+  </ItemGroup>
+
 </Project>
