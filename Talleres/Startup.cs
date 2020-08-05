@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-
+using TALLER.BUSINESS.Engines;
+using TALLER.DATA.Repository;
+using TALLER.BUSINESS.Contract;
 
 namespace Talleres
 {
@@ -46,7 +48,11 @@ namespace Talleres
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Talleres Api", Version = "v1" });
             });
-           // services.AddScoped<IEngineBase<Company>, CompanyEngine>();
+            // services.AddScoped<IEngineBase<Company>, CompanyEngine>();
+
+            services.AddScoped<IEngineBase<AUTOMOVIL>, AUTOMOVILEngine>();
+            services.AddScoped<IBaseRepository<AUTOMOVIL>, AUTOMOVILRepository>();
+            services.AddScoped<IAUTOMOVILEngine, AUTOMOVILEngine>();
 
             var mapper = Infraestructure.Mapping.MapperedEntities.GetMapper();
             services.AddSingleton(mapper);

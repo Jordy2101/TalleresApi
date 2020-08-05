@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using TALLER.ENTITY.Dto;
 
 namespace Talleres.Infraestructure.Mapping
 {
@@ -15,18 +15,19 @@ namespace Talleres.Infraestructure.Mapping
         {
             var config = new MapperConfiguration(cfg =>
             {
-               // cfg.CreateMap<CancellationReason, ReasonCancellationDto>().ReverseMap();
+                // cfg.CreateMap<CancellationReason, ReasonCancellationDto>().ReverseMap();
 
-               // cfg.CreateMap<Company, CompanyDto>().ReverseMap();
-               // cfg.CreateMap<BankFile, BankFileDto>().ReverseMap();
-               // cfg.CreateMap<ExportBankFile, ExportFileDto>().ReverseMap();
-               // cfg.CreateMap<ExportBankFileDetail, ExportBankFileDetailDto>().ReverseMap();
-               // cfg.CreateMap<BankFileDetail, ArchiveFileDto>().ReverseMap();
-               // cfg.CreateMap<BankFileDetail, BankFilesDetailForUploadFileDto>().ReverseMap();
-               // cfg.CreateMap<ExportBankFileDetail, ExportArchive>().ReverseMap();
-               // cfg.CreateMap<ExportBankFileDetail, ExportFileDetailForExportFileDto>().ReverseMap();
+                // cfg.CreateMap<Company, CompanyDto>().ReverseMap();
+                // cfg.CreateMap<BankFile, BankFileDto>().ReverseMap();
+                // cfg.CreateMap<ExportBankFile, ExportFileDto>().ReverseMap();
+                // cfg.CreateMap<ExportBankFileDetail, ExportBankFileDetailDto>().ReverseMap();
+                // cfg.CreateMap<BankFileDetail, ArchiveFileDto>().ReverseMap();
+                // cfg.CreateMap<BankFileDetail, BankFilesDetailForUploadFileDto>().ReverseMap();
+                // cfg.CreateMap<ExportBankFileDetail, ExportArchive>().ReverseMap();
+                // cfg.CreateMap<ExportBankFileDetail, ExportFileDetailForExportFileDto>().ReverseMap();
 
 
+                cfg.CreateMap<AUTOMOVIL, AUTOMOVILDto>().ReverseMap();
 
                // cfg.CreateMap<ExportBankFile, ExportFileDto>()
                // .ForMember(t => t.CurrencyName, opt => opt.MapFrom(v => v.Currency.Name))

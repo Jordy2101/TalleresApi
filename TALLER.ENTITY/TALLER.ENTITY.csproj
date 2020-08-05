@@ -12,7 +12,6 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Dto\" />
     <Folder Include="Scripts\Insert\" />
     <Folder Include="Scripts\Tables\" />
   </ItemGroup>

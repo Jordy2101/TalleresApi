@@ -12,8 +12,9 @@ namespace TALLER.ENTITY
         public TalleresContext(DbContextOptions<TalleresContext> options) : base(options)
         {
 
-        }
-            
-            
+        }  
+           //Tables 
+           public DbSet<AUTOMOVIL> AUTOMOVIL { get; set; }
+
     }
 }
