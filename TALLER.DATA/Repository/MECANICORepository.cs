@@ -8,17 +8,19 @@ using TALLER.ENTITY.Models;
 
 namespace TALLER.DATA.Repository
 {
-    public class AUTOMOVILRepository : BaseRepository<AUTOMOVIL>
+   public class MECANICORepository : BaseRepository<MECANICO>
     {
 
-        public AUTOMOVILRepository(TalleresContext ctx): base(ctx)
+        public MECANICORepository(TalleresContext ctx) : base(ctx)
         {
 
         }
 
-        public override IQueryable<AUTOMOVIL> FindAll()
+        public override IQueryable<MECANICO> FindAll()
         {
-            return base.FindAll().Where(c=> c.Status == "D");
+            return base.FindAll().Where(c => c.Status == "D");
         }
+
+
     }
 }

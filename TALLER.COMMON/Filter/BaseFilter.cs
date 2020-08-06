@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TALLER.ENTITY.Dto;
+using TALLER.ENTITY.Models;
 
 namespace TALLER.COMMON.Filter
 {

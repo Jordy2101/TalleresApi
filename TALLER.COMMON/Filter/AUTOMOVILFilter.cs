@@ -9,5 +9,6 @@ namespace TALLER.COMMON.Filter
         public string Tipo { get; set; }
         public string Modelo { get; set; }
         public string MARCA { get; set; }
+        public int Id { get; set; }
     }
 }
