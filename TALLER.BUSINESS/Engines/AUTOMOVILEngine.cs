@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using TALLER.BUSINESS.Base;
 using TALLER.BUSINESS.Contract;
@@ -29,6 +30,8 @@ namespace TALLER.BUSINESS.Engines
                 result = result.Where(c => c.Modelo == filter.Modelo).OrderByDescending(c=> c.Id);
             if (filter.MARCA != null)
                 result = result.Where(c => c.MARCA == filter.MARCA).OrderByDescending(c=> c.Id);
+            if (filter.Id != 0)
+                result = result.Where(c => c.Id == filter.Id).OrderByDescending(c=> c.Id);
             var list = mapper.ProjectTo<AUTOMOVILDto>(result);
             return list.OrderByDescending(c=> c.Id);
         }

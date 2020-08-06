@@ -54,6 +54,23 @@ namespace Talleres
             services.AddScoped<IBaseRepository<AUTOMOVIL>, AUTOMOVILRepository>();
             services.AddScoped<IAUTOMOVILEngine, AUTOMOVILEngine>();
 
+            services.AddScoped<IEngineBase<CLIENT>, CLIENTEngine>();
+            services.AddScoped<IBaseRepository<CLIENT>, CLIENTRepository>();
+            services.AddScoped<ICLIENTEngine, CLIENTEngine>();
+
+            services.AddScoped<IEngineBase<MECANICO>, MECANICOEngine>();
+            services.AddScoped<IBaseRepository<MECANICO>, MECANICORepository>();
+            services.AddScoped<IMECANICOEngine, MECANICOEngine>();
+
+            services.AddScoped<IEngineBase<SOLICITUD>, SOLICITUDEngine>();
+            services.AddScoped<IBaseRepository<SOLICITUD>, SOLICITUDRepository>();
+            services.AddScoped<ISOLICITUDEngine, SOLICITUDEngine>();
+
+            services.AddScoped<IEngineBase<RECIBO>, RECIBOEngine>();
+            services.AddScoped<IBaseRepository<RECIBO>, RECIBORepository>();
+            services.AddScoped<IRECIBOEngine, RECIBOEngine>();
+
+
             var mapper = Infraestructure.Mapping.MapperedEntities.GetMapper();
             services.AddSingleton(mapper);
             services.AddControllers();

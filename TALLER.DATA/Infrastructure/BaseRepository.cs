@@ -32,6 +32,7 @@ namespace BANKFILES.DATA.Infrastructure
         public virtual void Delete(int Id)
         {
             var entity = this.GetOne(Id);
+            entity.Status = "A";
             this.Update(entity);
         }
 

@@ -13,4 +13,8 @@
     <Folder Include="Extension\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TALLER.ENTITY\TALLER.ENTITY.csproj" />
+  </ItemGroup>
+
 </Project>
