@@ -13,6 +13,7 @@ using Microsoft.OpenApi.Models;
 using TALLER.BUSINESS.Engines;
 using TALLER.DATA.Repository;
 using TALLER.BUSINESS.Contract;
+using TALLER.ENTITY.Models.Views;
 
 namespace Talleres
 {
@@ -23,12 +24,18 @@ namespace Talleres
             Configuration = configuration;
         }
 
+
+
         public IConfiguration Configuration { get; }
+
+
 
         // This method gets called by the runtime. Use this method to add services to the container.2342343243
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration["sqlconnection:connectionString"];
+
+
 
             //y services.Configure<AppSettings>(appSettings);
             var migrationAssembly = typeof(Startup).GetType().Assembly.GetName().Name;
@@ -43,6 +50,8 @@ namespace Talleres
             {
                 options.UseSqlServer(connectionString);
 
+
+
             });
             services.AddSwaggerGen(c =>
             {
@@ -50,25 +59,41 @@ namespace Talleres
             });
             // services.AddScoped<IEngineBase<Company>, CompanyEngine>();
 
+            services.AddScoped<IListReciboEngine, ListReciboEngine>();
+            services.AddScoped<IListReciboRepository, ListReciboRepository>();
+            services.AddScoped<IListSolicitudEngine, ListSolicitudEngine>();
+            services.AddScoped<IListSolicitudRepository, ListSolicitudRepository>();
+          
+
             services.AddScoped<IEngineBase<AUTOMOVIL>, AUTOMOVILEngine>();
             services.AddScoped<IBaseRepository<AUTOMOVIL>, AUTOMOVILRepository>();
             services.AddScoped<IAUTOMOVILEngine, AUTOMOVILEngine>();
+
+
 
             services.AddScoped<IEngineBase<CLIENT>, CLIENTEngine>();
             services.AddScoped<IBaseRepository<CLIENT>, CLIENTRepository>();
             services.AddScoped<ICLIENTEngine, CLIENTEngine>();
 
+
+
             services.AddScoped<IEngineBase<MECANICO>, MECANICOEngine>();
             services.AddScoped<IBaseRepository<MECANICO>, MECANICORepository>();
             services.AddScoped<IMECANICOEngine, MECANICOEngine>();
+
+
 
             services.AddScoped<IEngineBase<SOLICITUD>, SOLICITUDEngine>();
             services.AddScoped<IBaseRepository<SOLICITUD>, SOLICITUDRepository>();
             services.AddScoped<ISOLICITUDEngine, SOLICITUDEngine>();
 
+
+
             services.AddScoped<IEngineBase<RECIBO>, RECIBOEngine>();
             services.AddScoped<IBaseRepository<RECIBO>, RECIBORepository>();
             services.AddScoped<IRECIBOEngine, RECIBOEngine>();
+
+
 
 
             var mapper = Infraestructure.Mapping.MapperedEntities.GetMapper();
@@ -76,11 +101,17 @@ namespace Talleres
             services.AddControllers();
         }
 
+
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
+
+
             app.UseCors("CorsPolicy");
+
+
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -89,17 +120,27 @@ namespace Talleres
                 c.RoutePrefix = string.Empty;
             });
 
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
 
+
+
             app.UseHttpsRedirection();
+
+
 
             app.UseRouting();
 
+
+
             app.UseAuthorization();
+
+
 
             app.UseEndpoints(endpoints =>
             {

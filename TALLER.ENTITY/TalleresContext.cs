@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using Microsoft.Extensions.Options;
+using TALLER.ENTITY.Models.Views;
 
 namespace TALLER.ENTITY
 {
@@ -13,6 +14,10 @@ namespace TALLER.ENTITY
         {
 
         }
+
+        //Views
+        public DbSet<VRecibo> VRecibo { get; set; }
+        public DbSet<VSolicitud> VSolicitud  { get;set;}
         //Tables 
         public DbSet<AUTOMOVIL> AUTOMOVIL { get; set; }
         public DbSet<CLIENT> CLIENT { get; set; }
