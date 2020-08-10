@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TALLER.ENTITY.Dto;
 using Talleres.Controllers;
+using TALLER.ENTITY.Models.Views;
+using TALLER.ENTITY.Dto.ViewsDto;
 
 namespace Talleres.Infraestructure.Mapping
 {
@@ -26,6 +28,12 @@ namespace Talleres.Infraestructure.Mapping
                 // cfg.CreateMap<BankFileDetail, BankFilesDetailForUploadFileDto>().ReverseMap();
                 // cfg.CreateMap<ExportBankFileDetail, ExportArchive>().ReverseMap();
                 // cfg.CreateMap<ExportBankFileDetail, ExportFileDetailForExportFileDto>().ReverseMap();
+
+
+                //Mapeo de VRecibo
+                cfg.CreateMap<VRecibo, ListRecibo>().ReverseMap();
+                //Mapeo de VSolicitud
+                cfg.CreateMap<VSolicitud, ListSolicitud>().ReverseMap();
 
                 //Mapeo entidad Automovil
                 cfg.CreateMap<AUTOMOVIL, AUTOMOVILDto>().ReverseMap();
@@ -51,7 +59,7 @@ namespace Talleres.Infraestructure.Mapping
                 .ForMember(t => t.Nombre_Cliente, opt => opt.MapFrom(v => v.CLIENT.Nombre))
                 .ForMember(t => t.Cedula, opt => opt.MapFrom(v => v.CLIENT.Cedula));
 
-
+                //Mapeo del recibo
                 cfg.CreateMap<RECIBO, RECIBODto>().ReverseMap();
                 cfg.CreateMap<RECIBO, RECIBODto>()
                

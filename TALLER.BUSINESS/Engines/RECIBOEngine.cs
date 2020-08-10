@@ -27,11 +27,23 @@ namespace TALLER.BUSINESS.Engines
             var result = base.FindAll();
             if (filter.Id != 0)
                 result = result.Where(c => c.Id == filter.Id).OrderByDescending(c=> c.Id);
-            if (filter.Id_solicitud != 0)
-                result = result.Where(c => c.ID_SOLICITUD == filter.Id_solicitud).OrderByDescending(c => c.Id);
-            if (filter.CreatedDate != null)
-                result = result.Where(c => c.CreateDate == filter.CreatedDate).OrderByDescending(c => c.Id);
-           
+        
+            //if (filter.FirstDate != null && filter.EndDate == null)
+            //    throw new ArgumentException("Para buscar se necesita fecha hasta");
+            //if (filter.FirstDate == null && filter.EndDate != null)
+            //    throw new ArgumentException("Para buscar se necesita fecha desde");
+            //if (filter.FirstDate != null && filter.EndDate != null)
+            //{
+            //    if (filter.EndDate > filter.FirstDate)
+            //    {
+            //        throw new ArgumentException("La fecha hasta no puede ser mayor que la fecha desde");
+            //    }
+            //    else
+            //    {
+            //        result = result.Where(c => c.CreateDate >= filter.FirstDate && c.CreateDate <= filter.EndDate).OrderByDescending(c => c.Id);
+            //    }
+            //}
+
             var list = mapper.ProjectTo<RECIBODto>(result);
             return list.OrderByDescending(c => c.Id);
         }

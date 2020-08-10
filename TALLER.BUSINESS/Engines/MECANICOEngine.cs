@@ -24,7 +24,7 @@ namespace TALLER.BUSINESS.Engines
         {
             var result = base.FindAll();
             if (filter.Nombre != null)
-                result = result.Where(c => c.Nombre == filter.Nombre).OrderByDescending(c => c.Id);
+                result = result.Where(c => c.Nombre == filter.Nombre).OrderByDescending(c=> c.Id);
             if (filter.Tipo_Mecanico != null)
                 result = result.Where(c => c.Tipo_Mecanico == filter.Tipo_Mecanico).OrderByDescending(c => c.Id);
             if (filter.Especialidad != null)

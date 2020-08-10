@@ -31,9 +31,22 @@ namespace TALLER.BUSINESS.Engines
                 result = result.Where(c => c.ID_CLIENTE == filter.Id_cliente).OrderByDescending(c => c.Id);
             if (filter.Id_mecanico != 0)
                 result = result.Where(c => c.ID_MECANICO == filter.Id_mecanico).OrderByDescending(c => c.Id);
-            if (filter.CreatedDate != null)
-                result = result.Where(c => c.CreateDate == filter.CreatedDate).OrderByDescending(c => c.Id);
-          
+            if (filter.FirstDate != null && filter.EndDate == null)
+                throw new ArgumentException("Para buscar se necesita fecha hasta");
+            if (filter.FirstDate == null && filter.EndDate != null)
+                throw new ArgumentException("Para buscar se necesita fecha desde");
+            if (filter.FirstDate != null && filter.EndDate != null)
+            {
+                if (filter.EndDate > filter.FirstDate)
+                {
+                    throw new ArgumentException("La fecha hasta no puede ser mayor que la fecha desde");
+                }
+                else
+                {
+                    result = result.Where(c => c.CreateDate >= filter.FirstDate && c.CreateDate <= filter.EndDate).OrderByDescending(c => c.Id);
+                }
+            }
+
             var list = mapper.ProjectTo<SOLICITUDDto>(result);
             return list.OrderByDescending(c => c.Id);
         }

@@ -12,7 +12,8 @@ namespace TALLER.COMMON.Filter
        public int Id { get; set;}
         public int Id_mecanico { get; set; }
         public int Id_cliente { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime FirstDate { get; set; }
+        public DateTime EndDate { get; set; }
 
     }
 }
