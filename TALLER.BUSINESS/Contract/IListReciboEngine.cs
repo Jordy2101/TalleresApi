@@ -9,6 +9,6 @@ namespace TALLER.BUSINESS.Contract
 {
     public interface IListReciboEngine
     {
-        IEnumerable<ListRecibo> GetPaged(ListVReciboFilter filter);
+        IEnumerable<VRecibo> GetPaged(ListVReciboFilter filter);
     }
 }

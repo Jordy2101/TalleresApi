@@ -10,6 +10,6 @@ namespace TALLER.BUSINESS.Contract
     public interface IListSolicitudEngine
     {
 
-        IEnumerable<ListSolicitud> GetPaged(ListSolicitudFilter filter);
+        IEnumerable<VSolicitud> GetPaged(ListSolicitudFilter filter);
     }
 }

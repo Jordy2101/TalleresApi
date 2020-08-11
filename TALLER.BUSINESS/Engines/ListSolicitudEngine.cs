@@ -19,7 +19,7 @@ namespace TALLER.BUSINESS.Engines
         }
 
 
-        public IEnumerable<ListSolicitud> GetPaged(ListSolicitudFilter filter)
+        public IEnumerable<VSolicitud> GetPaged(ListSolicitudFilter filter)
         {
             var result = file.GetAll();
             if (filter.Id != 0)
@@ -43,7 +43,7 @@ namespace TALLER.BUSINESS.Engines
             }
 
 
-            return (IEnumerable<ListSolicitud>)result.OrderByDescending(c => c.Date);
+            return result.OrderByDescending(c => c.Date);
         }
     }
 }
