@@ -7,6 +7,7 @@ using TALLER.COMMON.Filter;
 using TALLER.DATA.Contrat;
 using TALLER.ENTITY.Dto;
 using TALLER.ENTITY.Dto.ViewsDto;
+using TALLER.ENTITY.Models;
 using TALLER.ENTITY.Models.Views;
 
 namespace TALLER.BUSINESS.Engines
@@ -20,7 +21,7 @@ namespace TALLER.BUSINESS.Engines
             file = _file;
         }
 
-        public IEnumerable<ListRecibo> GetPaged(ListVReciboFilter filter)
+        public IEnumerable<VRecibo> GetPaged(ListVReciboFilter filter)
         {
             var result = file.GetAll();
             if (filter.Id != 0)
@@ -38,13 +39,12 @@ namespace TALLER.BUSINESS.Engines
                 if (filter.EndDate < filter.FirstDate)
                     throw new ArgumentException("La fecha desde no puede ser mayor que hasta");
                 result = result.Where(c => c.Date >= filter.FirstDate && c.Date <= filter.EndDate);
-
                 if (result.Count() == 0)
                     throw new ArgumentException("No existen datos con los parametros suministrado por el usuario");
             }
 
 
-            return (IEnumerable<ListRecibo>)result.OrderByDescending(c => c.Date);
+            return result.OrderByDescending(c => c.Date);
         }
     }
 }

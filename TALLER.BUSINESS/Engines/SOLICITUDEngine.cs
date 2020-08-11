@@ -23,6 +23,7 @@ namespace TALLER.BUSINESS.Engines
 
         public IEnumerable<SOLICITUDDto> GetPaged(SOLICITUDFilter filter)
         {
+            
             var result = base.FindAll();
           
             if (filter.Id != 0)
