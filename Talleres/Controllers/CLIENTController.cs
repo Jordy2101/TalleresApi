@@ -29,7 +29,22 @@ namespace Talleres.Controllers
         }
 
 
+        [HttpGet]
+        [Route("PostClient")]
+        public ActionResult PostClient(CLIENT data)
+        {
+            try
+            {
+                detail.InsertClient(data);
 
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
         [HttpGet]
         [Route("GetPaged")]
         public ActionResult GetPagedList([FromQuery] CLIENTFilter filter)
@@ -38,7 +53,7 @@ namespace Talleres.Controllers
             {
                 var empty = new List<CLIENT>();
                 var data = detail.GetPaged(filter);
-                var result = PagedList<CLIENTDto>.Create(data.AsQueryable(), filter.PageNumber, filter.PageSize);
+                var result = PagedList<CLIENT>.Create(data.AsQueryable(), filter.PageNumber, filter.PageSize);
                 if (result == null)
                 {
                     return BadRequest("No existen datos con este filtro");
