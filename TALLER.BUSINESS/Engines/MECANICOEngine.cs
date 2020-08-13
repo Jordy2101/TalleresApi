@@ -29,8 +29,8 @@ namespace TALLER.BUSINESS.Engines
                 result = result.Where(c => c.Tipo_Mecanico == filter.Tipo_Mecanico).OrderByDescending(c => c.Id);
             if (filter.Especialidad != null)
                 result = result.Where(c => c.Especialidad == filter.Especialidad).OrderByDescending(c => c.Id);
-            if (filter.Id_mecanico != 0)
-                result = result.Where(c => c.Id == filter.Id_mecanico).OrderByDescending(c=> c.Id);
+            if (filter.Id != 0)
+                result = result.Where(c => c.Id == filter.Id).OrderByDescending(c=> c.Id);
            
             var list = mapper.ProjectTo<MECANICODto>(result);
             return list.OrderByDescending(c => c.Id);
