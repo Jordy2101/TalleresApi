@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TALLER.BUSINESS.Base.Contract;
@@ -29,12 +31,23 @@ namespace Talleres.Controllers
         }
 
 
-        [HttpGet]
-        [Route("PostClient")]
-        public ActionResult PostClient(CLIENT data)
+        [HttpGet, DisableRequestSizeLimit]
+        [AllowAnonymous]
+        [Route("PostClient/{nombre}/{apellido}/{direccion}/{cedula}/{iD_AUTOMOVIL}")]
+        public ActionResult PostClient(string nombre, string apellido, string direccion, string cedula, int iD_AUTOMOVIL)
         {
             try
             {
+
+                var data = new CLIENT()
+                {
+                    Nombre = nombre,
+                    Apellido = apellido,
+                    Direccion = direccion,
+                    Cedula = cedula,
+                    ID_AUTOMOVIL = iD_AUTOMOVIL
+
+                };
                 detail.InsertClient(data);
 
                 return Ok();
