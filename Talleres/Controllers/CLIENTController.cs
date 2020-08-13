@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using DocumentFormat.OpenXml.Drawing.Charts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TALLER.BUSINESS.Base.Contract;
@@ -29,7 +31,33 @@ namespace Talleres.Controllers
         }
 
 
+        [HttpGet, DisableRequestSizeLimit]
+        [AllowAnonymous]
+        [Route("PostClient/{nombre}/{apellido}/{direccion}/{cedula}/{iD_AUTOMOVIL}")]
+        public ActionResult PostClient(string nombre, string apellido, string direccion, string cedula, int iD_AUTOMOVIL)
+        {
+            try
+            {
 
+                var data = new CLIENT()
+                {
+                    Nombre = nombre,
+                    Apellido = apellido,
+                    Direccion = direccion,
+                    Cedula = cedula,
+                    ID_AUTOMOVIL = iD_AUTOMOVIL
+
+                };
+                detail.InsertClient(data);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
         [HttpGet]
         [Route("GetPaged")]
         public ActionResult GetPagedList([FromQuery] CLIENTFilter filter)
@@ -38,7 +66,7 @@ namespace Talleres.Controllers
             {
                 var empty = new List<CLIENT>();
                 var data = detail.GetPaged(filter);
-                var result = PagedList<CLIENTDto>.Create(data.AsQueryable(), filter.PageNumber, filter.PageSize);
+                var result = PagedList<CLIENT>.Create(data.AsQueryable(), filter.PageNumber, filter.PageSize);
                 if (result == null)
                 {
                     return BadRequest("No existen datos con este filtro");

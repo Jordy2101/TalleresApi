@@ -23,6 +23,8 @@ namespace BANKFILES.DATA.Infrastructure
         {
         
             entity.CreateDate = DateTime.Now;
+            entity.Status = "D";
+            entity.ModifiedDate = DateTime.Now;
             var result = entities.Add(entity);
             this.RepositoryContext.SaveChanges();
             return Convert.ToInt32(result.Property("Id").CurrentValue.ToString());
