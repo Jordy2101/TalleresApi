@@ -35,5 +35,10 @@ namespace TALLER.BUSINESS.Engines
             var list = mapper.ProjectTo<MECANICODto>(result);
             return list.OrderByDescending(c => c.Id);
         }
+        public int InsertMecanico(MECANICO data)
+        {
+            return base.Create(data);
+        }
+
     }
 }

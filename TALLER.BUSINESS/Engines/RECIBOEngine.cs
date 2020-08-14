@@ -47,5 +47,10 @@ namespace TALLER.BUSINESS.Engines
             var list = mapper.ProjectTo<RECIBODto>(result);
             return list.OrderByDescending(c => c.Id);
         }
+        public int InsertRecibo(RECIBO data)
+        {
+            return base.Create(data);
+        }
+
     }
 }

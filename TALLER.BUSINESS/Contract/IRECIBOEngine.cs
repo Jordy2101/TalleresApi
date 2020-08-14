@@ -10,5 +10,6 @@ namespace TALLER.BUSINESS.Contract
    public interface IRECIBOEngine
     {
         IEnumerable<RECIBODto> GetPaged(RECIBOFilter filter);
+        int InsertRecibo(RECIBO data);
     }
 }
