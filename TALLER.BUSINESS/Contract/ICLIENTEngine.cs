@@ -9,7 +9,7 @@ namespace TALLER.BUSINESS.Contract
 {
    public interface ICLIENTEngine
     {
-        IEnumerable<CLIENT> GetPaged(CLIENTFilter filter);
+        IEnumerable<CLIENTDto> GetPaged(CLIENTFilter filter);
         int InsertClient(CLIENT data);
     }
 }
