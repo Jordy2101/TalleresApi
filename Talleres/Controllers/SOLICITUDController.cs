@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TALLER.BUSINESS.Base.Contract;
@@ -25,6 +26,31 @@ namespace Talleres.Controllers
             detail = _detail;
         }
 
+
+
+        [HttpGet, DisableRequestSizeLimit]
+        [AllowAnonymous]
+        [Route("PostSolicitud/{id_mecanico}/{id_cliente}/{descripcion}")]
+        public ActionResult PostSolicitud( int id_mecanico, int id_cliente, string descripcion)
+        {
+            try
+            {
+                var data = new SOLICITUD()
+                {
+                    ID_MECANICO = id_mecanico,
+                    ID_CLIENTE = id_cliente,
+                    Descripcion = descripcion
+                };
+
+                detail.InsertSolicitud(data);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
 
 
         [HttpGet]
