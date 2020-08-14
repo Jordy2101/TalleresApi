@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using DocumentFormat.OpenXml.Drawing;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TALLER.BUSINESS.Base.Contract;
@@ -28,8 +30,38 @@ namespace Talleres.Controllers
     }
 
 
+        [AllowAnonymous]
+        [Route("PostRecibo/{comentario}/{iD_SOLICITUD}")]
+        [HttpGet, DisableRequestSizeLimit]
+        public ActionResult PostRecibo(string comentario,int iD_SOLICITUD)
+        {
+            try
+            {
+                var data = new RECIBO()
+                {
+                    Comentario = comentario,
+                    
+                    ID_SOLICITUD = iD_SOLICITUD
 
-    [HttpGet]
+                };
+                detail.InsertRecibo(data);
+
+                return Ok();
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+
+
+
+
+
+        [HttpGet]
     [Route("GetPaged")]
     public ActionResult GetPagedList([FromQuery] RECIBOFilter filter)
     {
