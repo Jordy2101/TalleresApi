@@ -16,9 +16,13 @@ namespace TALLER.BUSINESS.Engines
     public class RECIBOEngine : EngineBase<RECIBO>, IRECIBOEngine
     {
         readonly IMapper mapper;
-        public RECIBOEngine(IBaseRepository<RECIBO> repository, IMapper _mapper) : base(repository)
+        readonly IBaseRepository<SOLICITUD> solicitud;
+        readonly IBaseRepository<MECANICO> mecanico;
+        public RECIBOEngine(IBaseRepository<RECIBO> repository,IBaseRepository<SOLICITUD> _solicitud,IBaseRepository<MECANICO> _mecanico, IMapper _mapper) : base(repository)
         {
             mapper = _mapper;
+            solicitud = _solicitud;
+            mecanico = _mecanico;
         }
 
 
@@ -47,8 +51,36 @@ namespace TALLER.BUSINESS.Engines
             var list = mapper.ProjectTo<RECIBODto>(result);
             return list.OrderByDescending(c => c.Id);
         }
+
+        private void RestCountMecanic(RECIBO data)
+        {
+            foreach( var item in solicitud.FindByCondition(s=> s.Id == data.ID_SOLICITUD).ToList())
+            {
+                var mecanic = item.ID_MECANICO;
+
+                foreach (var mec in mecanico.FindByCondition(m=> m.Id == mecanic).ToList())
+                {
+                    mec.CountCar = mec.CountCar - 1;
+                    mecanico.Update(mec);
+
+                }
+            }
+        }
+
+        private void ChangeStatus(RECIBO data)
+        {
+            foreach (var item in solicitud.FindByCondition( s=> s.Id == data.ID_SOLICITUD).ToList())
+            {
+                item.Status = Char.ToString('E');
+                solicitud.Update(item);
+            }
+        }
+
+
         public int InsertRecibo(RECIBO data)
         {
+            RestCountMecanic(data);
+            ChangeStatus(data);
             return base.Create(data);
         }
 

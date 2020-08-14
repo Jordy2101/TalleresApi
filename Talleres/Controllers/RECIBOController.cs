@@ -62,7 +62,7 @@ namespace Talleres.Controllers
 
 
         [HttpGet]
-    [Route("GetPaged")]
+      [Route("GetPaged")]
     public ActionResult GetPagedList([FromQuery] RECIBOFilter filter)
     {
         try
