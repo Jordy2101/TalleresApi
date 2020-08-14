@@ -24,7 +24,7 @@ namespace TALLER.BUSINESS.Engines
         {
             return base.Create(data);
         }
-        public IEnumerable<CLIENT> GetPaged(CLIENTFilter filter)
+        public IEnumerable<CLIENTDto> GetPaged(CLIENTFilter filter)
         {
             var result = base.FindAll();
             if (filter.Nombre != null)
@@ -33,10 +33,8 @@ namespace TALLER.BUSINESS.Engines
                 result = result.Where(c => c.Apellido == filter.Apellido).OrderByDescending(c => c.Id);
             if (filter.Cedula != null)
                 result = result.Where(c => c.Cedula == filter.Cedula).OrderByDescending(c => c.Id);
-            //var list = mapper.ProjectTo<CLIENT>(result);
-            //return list.OrderByDescending(c => c.Id);
-
-            return result.OrderByDescending(c => c.Id);
+            var list = mapper.ProjectTo<CLIENTDto>(result);
+            return list.OrderByDescending(c => c.Id);
         }
 
         public int InsertClient(CLIENT data)

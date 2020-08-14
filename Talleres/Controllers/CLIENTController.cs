@@ -66,7 +66,7 @@ namespace Talleres.Controllers
             {
                 var empty = new List<CLIENT>();
                 var data = detail.GetPaged(filter);
-                var result = PagedList<CLIENT>.Create(data.AsQueryable(), filter.PageNumber, filter.PageSize);
+                var result = PagedList<CLIENTDto>.Create(data.AsQueryable(), filter.PageNumber, filter.PageSize);
                 if (result == null)
                 {
                     return BadRequest("No existen datos con este filtro");
