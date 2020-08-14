@@ -9,8 +9,8 @@ namespace TALLER.BUSINESS.Contract
 {
    public interface ISOLICITUDEngine
     {
-
-
         IEnumerable<SOLICITUDDto> GetPaged(SOLICITUDFilter filter);
+
+        int InsertSolicitud (SOLICITUD data);
     }
 }
