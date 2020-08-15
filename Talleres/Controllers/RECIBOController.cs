@@ -31,17 +31,16 @@ namespace Talleres.Controllers
 
 
         [AllowAnonymous]
-        [Route("PostRecibo/{comentario}/{iD_SOLICITUD}")]
+        [Route("PostRecibo/{comentario}/{id_solicitud}")]
         [HttpGet, DisableRequestSizeLimit]
-        public ActionResult PostRecibo(string comentario,int iD_SOLICITUD)
+        public ActionResult PostRecibo(string comentario,int id_solicitud)
         {
             try
             {
                 var data = new RECIBO()
                 {
                     Comentario = comentario,
-                    
-                    ID_SOLICITUD = iD_SOLICITUD
+                    ID_SOLICITUD = id_solicitud
 
                 };
                 detail.InsertRecibo(data);

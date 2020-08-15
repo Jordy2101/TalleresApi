@@ -34,6 +34,8 @@ namespace TALLER.BUSINESS.Engines
         {
             
             var result = base.FindAll();
+
+            
           
             if (filter.Id != 0)
                 result = result.Where(c => c.Id == filter.Id).OrderByDescending(c => c.Id);
@@ -68,7 +70,7 @@ namespace TALLER.BUSINESS.Engines
             {
                 if(item.CountCar == 3)
                 {
-                    throw new ArgumentException("El mecanico tiene el limite de " + item.CountCar +" Aceptados");
+                    throw new ArgumentException("El mecanico tiene el limite de " + item.CountCar +" Autos aceptados");
                 }
                 else
                 {
